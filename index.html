@@ -59,6 +59,7 @@
             border-radius: 5px;
             border-color: darkmagenta;
         }
+       
     </style>
 </head>
 <body>
@@ -78,17 +79,20 @@
     <br>
     <div class="tharushma">
     <button onclick="changeText()">Change Paragraph</button>
-    <button onclick="addElement()">Add Element</button>
-    <button onclick="removeElement()">Remove Element</button>
+    <button onclick="addElement()">Add Image</button>
+    <button onclick="removeElement()">Remove Image</button>
     <button onclick="resetPage()">Reset</button></div>
     <br>
     <div class="calculator">
         <h3>Tree Planting Calculator</h3>
         <p>Enter the number of trees planted per month:</p>
         <input type="number" id="treesPerMonth" value="0"> 
-        <button onclick="calculateTrees()">Calculate</button>
+        <button  onclick="calculateTrees()">Calculate</button>
         <p>Total trees in a year: <span id="totalTrees">0</span></p>
     </div>
+    <h2 id="natureQuote">Hii, this is Tharushma</h2>
+    <div class="tharushma">
+    <button onclick="showQuote()">click on button to get different quotes</button></div>
 
     <script>
         const images = [
@@ -105,7 +109,7 @@
 
         function addElement() {
             let container = document.getElementById("elementsContainer");
-            if (container.childElementCount < 5) { // Increased limit to allow more additions
+            if (container.childElementCount < 5) { 
                 let div = document.createElement("div");
                 div.className = "box";
                 let imgIndex = container.childElementCount % images.length;
@@ -124,7 +128,7 @@
         }
 
         function resetPage() {
-            document.getElementById("text").innerText = "The beauty of trees is not just their physical appearance, but in their essence. They embody the balance and harmony of nature, and remind us of our own place in the world. They inspire us to be better stewards of the earth and to work towards a more sustainable and just future.So next time you walk among the trees, take a moment to appreciate their beauty and their wisdom, Remember that we are part of the same family, and our fates are intertwined. Let the trees teach you their lessons, and let them inspire you to a better version of yourself.";
+            document.getElementById("text").textContent = "The beauty of trees is not just their physical appearance, but in their essence. They embody the balance and harmony of nature, and remind us of our own place in the world. They inspire us to be better stewards of the earth and to work towards a more sustainable and just future.So next time you walk among the trees, take a moment to appreciate their beauty and their wisdom, Remember that we are part of the same family, and our fates are intertwined. Let the trees teach you their lessons, and let them inspire you to a better version of yourself.";
             document.getElementById("elementsContainer").innerHTML = `
                 <div class="box"><img src="./images/forest.webp" alt="Forest Image"></div>
                 <div class="box"><img src="./images/good-nature-homepage-hero_2-scaled.jpg" alt="Forest Image"></div>
@@ -137,6 +141,15 @@
             let treesPerMonth = document.getElementById("treesPerMonth").value;
             let totalTrees = treesPerMonth * 12;
             document.getElementById("totalTrees").innerText = totalTrees;
+        }
+        function showQuote() {
+            const quotes = [
+                "Nature is not a place to visit. It is home.",
+                "The Earth has music for those who listen.",
+                "In every walk with nature, one receives far more than he seeks.",
+                "Look deep into nature, and then you will understand everything better."
+            ];
+            document.getElementById("natureQuote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
         }
     </script>
 </body>
