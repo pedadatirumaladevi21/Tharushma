@@ -13,6 +13,15 @@
             background-size: cover;
             color: black;
         }
+        .centered-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 80%; /* Adjust width as needed */
+            margin: auto;
+        }
+
         .container {
             display: flex;
             flex-direction: row;
@@ -42,6 +51,7 @@
             background: rgba(237, 173, 191, 0.6);
             display: inline-block;
             border-radius: 10px;
+            border: 1px solid darkmagenta;
         }
         .calculator input {
             width: 50px;
@@ -59,16 +69,51 @@
             border-radius: 5px;
             border-color: darkmagenta;
         }
+        .faq-container {
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .faq-question {
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgb(237, 173, 191, 0.6);
+            border: 1px solid darkmagenta;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: rgb(248, 169, 219,0.6);
+            border-left: 3px solid darkmagenta;
+        }
+        .butterfly {
+            position: fixed;
+            width: 50px; /* Adjust size as needed */
+            height: auto;
+            animation: fly 3s infinite alternate ease-in-out;
+            z-index: 1000; /* Ensures they stay on top */
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+
+        
        
     </style>
 </head>
 <body>
     <h1>Nature</h1>
+    <div class="centered-text">
     <p>The beauty of trees is not just their physical appearance, but in their essence. They embody the balance and harmony of nature, and remind us of our own place in the world. They inspire us to be better stewards of the earth and to work towards a more sustainable and just future.
 
-        So next time you walk among the trees, take a moment to appreciate their beauty and their wisdom, Remember that we are part of the same family, and our fates are intertwined. Let the trees teach you their lessons, and let them inspire you to a better version of yourself.</p>
+        So next time you walk among the trees, take a moment to appreciate their beauty and their wisdom, Remember that we are part of the same family, and our fates are intertwined. Let the trees teach you their lessons, and let them inspire you to a better version of yourself.</p></div>
     <h2>Beauty of Nature</h2>
-    <p id="text">The beauty of nature lies in its freshness, openness, slow breeze and the warm sun relief for our brains. Nature is made of everything we see around us the trees, flowers, plants, animals, sky, mountains, forests and more. We find many colors in nature which make the Earth beautiful.Many beautiful living things are among the countless riches of beauty that nature has to offer. Millions of different species in every size, colour, and habitat—on land, in the sky, and in the water—abound in the world of birds, animals, reptiles, and fish.</p>
+    <div class="centered-text"><p id="text">The beauty of nature lies in its freshness, openness, slow breeze and the warm sun relief for our brains. Nature is made of everything we see around us the trees, flowers, plants, animals, sky, mountains, forests and more. We find many colors in nature which make the Earth beautiful.Many beautiful living things are among the countless riches of beauty that nature has to offer. Millions of different species in every size, colour, and habitat—on land, in the sky, and in the water—abound in the world of birds, animals, reptiles, and fish.</p></div>
     <div class="container" id="elementsContainer">
         <div class="box"><img src="./images/forest.webp" alt="Forest Image"></div>
         <div class="box"><img src="./images/good-nature-homepage-hero_2-scaled.jpg" alt="Forest Image"></div>
@@ -97,6 +142,20 @@
     <div class="tharushma">
     <button onclick="showQuote()">click on button to get different quotes</button></div>
     <h2 id="natureQuote">Hii, this is Tharushma</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(0)">What is nature?</div>
+            <div class="faq-answer">Nature refers to all living and non-living things around us, including trees, animals, rivers, and mountains.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(1)">Why is nature important?</div>
+            <div class="faq-answer">Nature provides us with resources such as air, water, and food. It maintains ecological balance and supports all life forms.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(2)">How can we protect nature?</div>
+            <div class="faq-answer">We can protect nature by reducing pollution, planting trees, conserving water, and using renewable resources.</div>
+        </div>
+    </div>
     <script>
         const images = [
             "./images/forest.webp", 
@@ -154,6 +213,35 @@
             ];
             document.getElementById("natureQuote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
         }
+        function toggleFAQ(index) {
+            let answers = document.querySelectorAll('.faq-answer');
+            if (answers[index].style.display === 'none' || answers[index].style.display === '') {
+                answers[index].style.display = 'block';
+            } else {
+                answers[index].style.display = 'none';
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const butterflies = [];
+
+            function createButterfly(left, top) {
+                let butterfly = document.createElement("img");
+                butterfly.className = "butterfly";
+                butterfly.src = "./images/butterfly-removebg-preview.png"; // Replace with your butterfly image path
+                butterfly.style.left = left;
+                butterfly.style.top = top;
+                document.body.appendChild(butterfly);
+                butterflies.push(butterfly);
+            }
+
+            createButterfly("10px", "10px"); // Top-left
+            createButterfly("calc(100% - 60px)", "10px"); // Top-right
+            createButterfly("10px", "calc(100% - 60px)"); // Bottom-left
+            createButterfly("calc(100% - 60px)", "calc(100% - 60px)"); // Bottom-right
+        });
+
+           
+
     </script>
 </body>
 </html>
